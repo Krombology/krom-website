@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Krom Technology Systems | Migrations, integrations, and IT that works</title>
-<meta name="description" content="Krom Technology Systems plans and runs email, identity, and server migrations for companies of 50 to 1,000 people, and provides ongoing IT support for businesses without an IT department.">
+<title>Krom Technology Systems | Migrations, identity, Azure, and IT that works</title>
+<meta name="description" content="Krom Technology Systems plans and runs email, identity, server, and tenant migrations for companies of 50 to 1,000 people, cuts wasted licence spend, and provides ongoing IT for businesses without an IT department. Morristown, New Jersey.">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -30,9 +30,11 @@
     <nav id="nav-links" class="nav-links">
       <a href="#services">Services</a>
       <a href="#work">Work</a>
+      <a href="#expertise">Expertise</a>
       <a href="#process">Process</a>
+      <a href="#terms">Terms</a>
+      <a href="#faq">FAQ</a>
       <a href="#about">About</a>
-      <a href="#contact">Contact</a>
       <button class="theme-toggle" type="button" aria-label="Switch to light theme" title="Switch theme">
         <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
         <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>
@@ -49,12 +51,12 @@
   <div class="wrap hero-grid">
     <div class="hero-copy">
       <h1>Your users log&nbsp;in Monday and everything works.</h1>
-      <p class="lede">Krom Technology Systems plans and runs email, identity, and server migrations for companies of 50 to 1,000 people. When the project is done, we can stay on as your IT.</p>
+      <p class="lede">Krom Technology Systems plans and runs email, identity, server, and tenant migrations for companies of 50 to 1,000 people, then finishes the part most projects skip: verifying every file, cancelling the old licences, and documenting the result. When the project is done, Krom can stay on as your IT.</p>
       <div class="hero-actions">
         <a class="btn btn-primary" href="#contact">Tell me about your project</a>
         <a class="btn btn-ghost" href="https://calendly.com/krom-systems/30min" target="_blank" rel="noopener">Book a 30 minute call</a>
       </div>
-      <p class="hero-note">Google Workspace to Microsoft 365. On-prem Exchange to Exchange Online. Physical servers to Azure. Acquisitions folded into one estate.</p>
+      <p class="hero-note">Google Workspace to Microsoft 365. On-prem Exchange to Exchange Online. Physical servers to Azure. Acquisitions folded into one estate. Licence bills cut by six figures.</p>
     </div>
 
     <div class="runbook" aria-label="Example cutover runbook">
@@ -81,10 +83,10 @@
 <!-- PROOF -->
 <section class="proof" aria-label="Track record">
   <div class="wrap proof-row">
-    <div class="stat"><span class="stat-n" data-count="12" data-suffix="+">12+</span><span class="stat-l">years in infrastructure</span></div>
-    <div class="stat"><span class="stat-n" data-count="4">4</span><span class="stat-l">acquisitions integrated</span></div>
+    <div class="stat"><span class="stat-n" data-count="13" data-suffix="+">13+</span><span class="stat-l">years in infrastructure</span></div>
     <div class="stat"><span class="stat-n" data-count="1000" data-suffix="+">1,000+</span><span class="stat-l">mailboxes migrated</span></div>
-    <div class="stat"><span class="stat-n" data-count="0">0</span><span class="stat-l">downtime cutovers, every time</span></div>
+    <div class="stat"><span class="stat-n" data-count="100" data-suffix="+">100+</span><span class="stat-l">offices re-networked</span></div>
+    <div class="stat"><span class="stat-n" data-count="100" data-prefix="$" data-suffix="k+">$100k+</span><span class="stat-l">yearly licence spend cut for one client in 2026</span></div>
   </div>
 </section>
 
@@ -92,8 +94,8 @@
 <section class="section" id="services">
   <div class="wrap">
     <div class="section-head">
-      <h2>Two ways to work with Krom</h2>
-      <p>Most clients come for a project. Some stay for the support. Either way, you get one engineer who has done this before, not a queue.</p>
+      <h2>What Krom does</h2>
+      <p>Most clients come for a project. Some stay for the support. Either way you get one engineer who has done this before, not a queue. Open any item for what is included, what you receive, and the usual size of the job.</p>
     </div>
 
     <div class="tracks">
@@ -101,6 +103,7 @@
         <h3 class="track-title">Projects</h3>
         <p class="track-desc">Fixed scope, a plan you can read, and a cutover date we hit.</p>
 
+        <h4 class="family">Move</h4>
         <div class="cards" data-expandable>
           <article class="card">
             <button class="card-toggle" aria-expanded="false">
@@ -112,11 +115,13 @@
               <ul>
                 <li>Audit of mailboxes, shared drives, external sharing, and file names that will not survive the move</li>
                 <li>Coexistence so mail flows both ways during the migration window</li>
-                <li>Batch migration with BitTitan or CloudM, then delta checks that catch what the tool missed</li>
+                <li>Batch migration with BitTitan MigrationWiz or CloudM, then a delta check that compares source and destination item by item, because the tool's own success report is not enough</li>
+                <li>Files the migration tool cannot see, such as those owned by a user but sitting in someone else's folder, found and moved by script</li>
                 <li>MX cutover at a quiet hour, with rollback ready and never needed</li>
-                <li>Spam filtering, Defender, and DMARC tuned on the new side</li>
-                <li>Old licences decommissioned so the savings actually land</li>
+                <li>Exchange Online Protection, Defender, DKIM, and DMARC tuned on the new side</li>
+                <li>Old licences removed in waves with notice to each person, so the savings actually land</li>
               </ul>
+              <p class="card-you-get">You receive: inventory workbook, migration plan, per-user delta report, cutover runbook, licence decommission log.</p>
               <p class="card-scope">Typical scope: 50 to 1,000 mailboxes, 4 to 12 weeks.</p>
             </div></div>
           </article>
@@ -132,10 +137,12 @@
                 <li>On-site or remote assessment of what they run, what they depend on, and what breaks if moved</li>
                 <li>An integration path with scope, risk, and phasing for each workstream, written for both sides' leadership</li>
                 <li>Identity first, so acquired staff have a corporate login on day one</li>
-                <li>Email, file, and server migrations sequenced around their busy periods</li>
+                <li>Email, file, and server migrations sequenced around their billing cycles and busy periods</li>
+                <li>Their hardware decommissioned and their vendor contracts closed out</li>
                 <li>Clear communication to people who did not choose this and are nervous about it</li>
               </ul>
-              <p class="card-scope">Typical scope: 200 to 1,000 users per acquisition.</p>
+              <p class="card-you-get">You receive: assessment report, integration plan per workstream, day-one identity checklist, decommission inventory.</p>
+              <p class="card-scope">Typical scope: 200 to 1,000 users per acquisition, 8 to 16 weeks.</p>
             </div></div>
           </article>
 
@@ -148,15 +155,41 @@
             <div class="card-body"><div class="card-inner">
               <ul>
                 <li>Inventory of workloads, dependencies, and what can simply be turned off</li>
-                <li>VNets, subnets, NSGs, and VPN designed so remote and office users get the same experience</li>
-                <li>Backup, disaster recovery, and Azure Policy so every future VM follows the same rules</li>
+                <li>Virtual WAN or hub and spoke, subnets, NSGs, and VPN designed so remote and office users get the same experience</li>
+                <li>File shares moved to Azure Files and mapped by Intune or Group Policy</li>
+                <li>Backup, disaster recovery testing, and Azure Policy so every future VM follows the same rules</li>
+                <li>Resource groups, RBAC groups, and tagging that make the bill readable by department</li>
                 <li>Windows Server upgrades and DFS moves handled in the same pass</li>
                 <li>Hardware decommissioned and the co-location bill cancelled</li>
               </ul>
-              <p class="card-scope">Typical scope: 5 to 50 servers.</p>
+              <p class="card-you-get">You receive: workload inventory, network design, landing zone with policy, DR test record, cost breakdown by tag.</p>
+              <p class="card-scope">Typical scope: 5 to 50 servers, 6 to 12 weeks.</p>
             </div></div>
           </article>
 
+          <article class="card">
+            <button class="card-toggle" aria-expanded="false">
+              <span class="card-title">Google Workspace decommission</span>
+              <span class="card-sum">The tail end nobody finishes. Drive verified file by file, then seats removed in waves until the bill is what it should be.</span>
+              <span class="chev" aria-hidden="true"></span>
+            </button>
+            <div class="card-body"><div class="card-inner">
+              <ul>
+                <li>Every user's Drive compared against the destination, including files outside My Drive that migration tools silently skip</li>
+                <li>Gaps repaired by script, native Google formats exported to editable Office or SVG equivalents</li>
+                <li>Departed staff archived first, then active staff in waves with a personal notice and a date</li>
+                <li>Shared mailboxes, aliases, groups, and calendar resources recreated on the Microsoft side and checked</li>
+                <li>Remaining users dropped to free identity tier or a cheaper edition, and the subscription downgraded last</li>
+                <li>A tracker your team can read, updated after every cut</li>
+              </ul>
+              <p class="card-you-get">You receive: per-user verification report, wave schedule, notice templates, seat-by-seat licence log, final subscription state.</p>
+              <p class="card-scope">Typical scope: 50 to 250 seats, 4 to 8 weeks.</p>
+            </div></div>
+          </article>
+        </div>
+
+        <h4 class="family">Secure</h4>
+        <div class="cards" data-expandable>
           <article class="card">
             <button class="card-toggle" aria-expanded="false">
               <span class="card-title">Identity and Zero Trust</span>
@@ -165,13 +198,34 @@
             </button>
             <div class="card-body"><div class="card-inner">
               <ul>
-                <li>Entra ID design: Connect Sync, groups, RBAC, app registrations</li>
+                <li>Entra ID design: Connect Sync, groups, RBAC, app registrations, and service principals with an owner and an expiry date</li>
                 <li>Single sign-on across your SaaS estate via SAML, ADFS, and SCIM provisioning</li>
                 <li>Conditional Access and MFA rolled out in phases so nobody gets locked out on a Monday</li>
                 <li>Joiner, mover, and leaver automation so access follows the org chart</li>
+                <li>Break-glass accounts set up properly and the ones that should never be disabled identified before someone does</li>
                 <li>Controls documented for HiTrust, SOC 2, or your cyber insurer</li>
               </ul>
+              <p class="card-you-get">You receive: identity design, Conditional Access policy set with rollout order, SSO app inventory, lifecycle runbook, audit evidence pack.</p>
               <p class="card-scope">Typical scope: 15+ applications behind SSO, 4 to 8 weeks.</p>
+            </div></div>
+          </article>
+
+          <article class="card">
+            <button class="card-toggle" aria-expanded="false">
+              <span class="card-title">Active Directory modernization</span>
+              <span class="card-sum">Replace the one domain controller everything secretly depends on before it fails, not after.</span>
+              <span class="chev" aria-hidden="true"></span>
+            </button>
+            <div class="card-body"><div class="card-inner">
+              <ul>
+                <li>Forest and domain audit: FSMO roles, replication, DNS, sites, trusts, and every service quietly running on a DC</li>
+                <li>Certificate authority reviewed: what it issued, what is still valid, and whether to migrate it or replace it</li>
+                <li>New domain controllers built, roles transferred, Entra Connect and DNS moved off the old box</li>
+                <li>Old operating systems retired, stale objects and privileged group members cleaned up</li>
+                <li>Sequenced around your change freeze, with the old server kept on but idle before it is removed</li>
+              </ul>
+              <p class="card-you-get">You receive: forest topology document, dependency map, PKI findings, phased cutover plan, rollback for each phase.</p>
+              <p class="card-scope">Typical scope: 2 to 10 domain controllers, 8 to 20 weeks including freeze windows.</p>
             </div></div>
           </article>
 
@@ -183,12 +237,73 @@
             </button>
             <div class="card-body"><div class="card-inner">
               <ul>
-                <li>Apple Business Manager and Jamf Pro: a new Mac is ready the moment it is unboxed</li>
+                <li>Apple Business Manager and Jamf Pro: a new Mac is ready the moment it is unboxed, signed in with the corporate identity</li>
                 <li>Intune and Autopilot for Windows, with device compliance tied to Conditional Access</li>
-                <li>App deployment, configuration profiles, disk encryption, and patch rings</li>
-                <li>Self-service so people can install approved apps without a ticket</li>
+                <li>App deployment, configuration profiles, disk encryption, Wi-Fi profiles, and patch rings</li>
+                <li>Self-service so people can install approved apps or get a timed admin session without a ticket</li>
+                <li>Remote monitoring and management tooling with ticket automation and SLAs if you want them</li>
               </ul>
-              <p class="card-scope">Typical scope: 50 to 500 devices.</p>
+              <p class="card-you-get">You receive: enrollment design, baseline profiles, app catalogue, self-service policies, onboarding checklist.</p>
+              <p class="card-scope">Typical scope: 50 to 500 devices, 3 to 6 weeks.</p>
+            </div></div>
+          </article>
+        </div>
+
+        <h4 class="family">Save and automate</h4>
+        <div class="cards" data-expandable>
+          <article class="card">
+            <button class="card-toggle" aria-expanded="false">
+              <span class="card-title">Licence and SaaS cost reduction</span>
+              <span class="card-sum">Measure who actually uses each seat, then remove the rest before the renewal locks you in for another year.</span>
+              <span class="chev" aria-hidden="true"></span>
+            </button>
+            <div class="card-body"><div class="card-inner">
+              <ul>
+                <li>Usage pulled from the vendor's own activity APIs, not from a survey of who thinks they need it</li>
+                <li>Renewal dates and commerce terms checked first, since some seats can only change at renewal</li>
+                <li>Removals in waves with a personal notice, a date, and a way to object</li>
+                <li>Cheaper edition or free tier chosen with the storage and compliance consequences worked out, not assumed</li>
+                <li>Contract transitions handled, including the billing profile and invoice contacts that get lost in the move</li>
+              </ul>
+              <p class="card-you-get">You receive: usage report per seat, removal schedule, savings tracked per wave, renewal calendar.</p>
+              <p class="card-scope">Typical scope: 100 to 500 seats across Microsoft, Google, Power BI, and the long tail. Pays for itself in the first wave.</p>
+            </div></div>
+          </article>
+
+          <article class="card">
+            <button class="card-toggle" aria-expanded="false">
+              <span class="card-title">Automation and internal tooling</span>
+              <span class="card-sum">The scripts and workflows that turn a recurring four-hour job into a button.</span>
+              <span class="chev" aria-hidden="true"></span>
+            </button>
+            <div class="card-body"><div class="card-inner">
+              <ul>
+                <li>PowerShell and Python against Microsoft Graph, Exchange Online, Azure, and Google Workspace admin APIs</li>
+                <li>Power Automate flows and SharePoint lists for intake, approval, and routing, built inside the tenant you already pay for</li>
+                <li>Bulk operations done safely: dry run by default, a log of every change, a hard guard on anything that must never be touched</li>
+                <li>Alerting on the things that fail silently, wired to the team that has to act</li>
+                <li>Handed over with the code, a readme, and a runbook, so it does not depend on Krom</li>
+              </ul>
+              <p class="card-you-get">You receive: working tool, source in your repo, runbook, a named owner on your side trained to run it.</p>
+              <p class="card-scope">Typical scope: 1 to 3 weeks per tool.</p>
+            </div></div>
+          </article>
+
+          <article class="card">
+            <button class="card-toggle" aria-expanded="false">
+              <span class="card-title">Data platform and reporting</span>
+              <span class="card-sum">Azure Synapse or Microsoft Fabric, governed, private, and with a spend cap somebody watches.</span>
+              <span class="chev" aria-hidden="true"></span>
+            </button>
+            <div class="card-body"><div class="card-inner">
+              <ul>
+                <li>Lakehouse layout, capacity sizing, and workspace design so most report readers need no paid licence</li>
+                <li>Private endpoints, RBAC, and access that can be reviewed, not guessed</li>
+                <li>Pipelines from sources like Heap and GA4 with monitoring that pages the right people on failure</li>
+                <li>Power BI licence model matched to real usage, since capacity and per-user seats are often paid for twice</li>
+              </ul>
+              <p class="card-you-get">You receive: platform design, access model, monitoring dashboards, monthly cost view.</p>
+              <p class="card-scope">Typical scope: 4 to 10 weeks.</p>
             </div></div>
           </article>
         </div>
@@ -196,23 +311,31 @@
 
       <div class="track track-support">
         <h3 class="track-title">Ongoing support</h3>
-        <p class="track-desc">For businesses that do not have an IT department, or have one that is stretched thin.</p>
+        <p class="track-desc">For businesses that do not have an IT department, or have one that is stretched thin. A monthly retainer, a named engineer, and no queue.</p>
         <ul class="support-list">
           <li>
             <strong>Helpdesk</strong>
-            <span>Remote support for your people from a named engineer who knows your setup. Escalations do not get lost between tiers.</span>
+            <span>Remote support for your people from an engineer who knows your setup. Escalations do not get lost between tiers because there are no tiers.</span>
           </li>
           <li>
             <strong>Monitoring and alerting</strong>
-            <span>Servers, services, backups, and certificates watched around the clock. You hear about problems before your users do.</span>
+            <span>Servers, services, backups, certificates, and the service-principal secrets that expire on a Sunday, all watched. You hear about problems before your users do.</span>
           </li>
           <li>
             <strong>Patching and upgrades</strong>
             <span>Windows, macOS, servers, and firmware on a schedule you approve, tested before they roll out.</span>
           </li>
           <li>
+            <strong>Identity and access</strong>
+            <span>Joiners set up the day before they start, leavers cut off the day they go, access reviews quarterly.</span>
+          </li>
+          <li>
             <strong>Vendor and licence management</strong>
-            <span>Microsoft, Google, Adobe, telco, and the rest. Seats nobody uses get cancelled, renewals get negotiated.</span>
+            <span>Microsoft, Google, Adobe, Apple, telco, and the rest. Seats nobody uses get cancelled, renewals get negotiated, invoices get checked.</span>
+          </li>
+          <li>
+            <strong>Fractional IT lead</strong>
+            <span>Roadmap, budget, and vendor decisions for leadership that wants a technical opinion without a full-time hire. Documentation that a future hire can pick up.</span>
           </li>
         </ul>
         <a class="link-more" href="#contact">Ask about a monthly retainer</a>
@@ -226,7 +349,7 @@
   <div class="wrap">
     <div class="section-head">
       <h2>Work by sector</h2>
-      <p>Client names stay private. The numbers are real.</p>
+      <p>Client names stay private. The numbers are real, and most of the recent ones come from work done in 2026.</p>
     </div>
 
     <div class="filters" role="group" aria-label="Filter case studies by sector">
@@ -234,6 +357,7 @@
       <button class="chip" data-filter="ecommerce" aria-pressed="false">E-commerce</button>
       <button class="chip" data-filter="healthcare" aria-pressed="false">Healthcare</button>
       <button class="chip" data-filter="engineering" aria-pressed="false">Engineering</button>
+      <button class="chip" data-filter="retail" aria-pressed="false">Retail</button>
       <button class="chip" data-filter="legal" aria-pressed="false">Legal</button>
       <button class="chip" data-filter="publishing" aria-pressed="false">Publishing and finance</button>
       <button class="chip" data-filter="government" aria-pressed="false">Government</button>
@@ -251,6 +375,77 @@
           <dt>Outcome</dt>
           <dd>Zero downtime. Sixty percent less manual migration effort through automation. Thirty-five percent SaaS cost reduction from licence decommissioning. HiTrust certification achieved with Krom as the infrastructure owner.</dd>
         </dl>
+        <p class="case-tools">GAM, BitTitan MigrationWiz, Python, PowerShell, Exchange Online, Defender</p>
+      </article>
+
+      <article class="case" data-sectors="ecommerce healthcare">
+        <p class="case-sector">E-commerce, healthcare benefits</p>
+        <h3>182 paid Google seats cut to 42 in six weeks, with every Drive verified file by file first.</h3>
+        <dl>
+          <dt>Situation</dt>
+          <dd>The Microsoft migration had been declared done a year earlier, but 182 Google Workspace seats were still being paid for at over $43 a seat a month because nobody could prove the data was safe to let go.</dd>
+          <dt>Approach</dt>
+          <dd>Compared each user's Drive against the Microsoft side by script and found 64,782 files across 26 users that the migration tool had never seen, because they sat outside My Drive. Synced the gaps, exported native Google formats, then removed seats in ten waves with a personal Teams notice and a date for each person. Departed staff archived first, heavy users last.</dd>
+          <dt>Outcome</dt>
+          <dd>140 seats removed, over $70,000 a year off the bill so far, on the way to a ten-seat subscription. A tracker in SharePoint the team updates after every wave.</dd>
+        </dl>
+        <p class="case-tools">GAM, Google Drive and Admin APIs, Microsoft Graph, Python, SharePoint</p>
+      </article>
+
+      <article class="case" data-sectors="ecommerce healthcare">
+        <p class="case-sector">E-commerce, healthcare benefits</p>
+        <h3>Power BI seats cut from 140 to 46 ahead of renewal, based on measured use rather than opinion.</h3>
+        <dl>
+          <dt>Situation</dt>
+          <dd>140 Premium Per User seats at $24 each renewing in five weeks, under commerce terms that only allow changes at renewal. Nobody knew who actually used one.</dd>
+          <dt>Approach</dt>
+          <dd>Pulled seven days of activity from the Power BI admin API. 76 of 138 holders had zero actions, and seven people were working in Power BI with no seat at all, which proved the Fabric capacity already covered readers. Removed seats in four waves with a personal notice, kept every active analyst.</dd>
+          <dt>Outcome</dt>
+          <dd>94 seats removed, about $27,000 a year, with the count reduced mid-term for a pro-rated credit after a direct conversation with the vendor.</dd>
+        </dl>
+        <p class="case-tools">Power BI admin API, Microsoft Graph, Azure CLI, Python</p>
+      </article>
+
+      <article class="case" data-sectors="ecommerce healthcare">
+        <p class="case-sector">E-commerce, healthcare benefits</p>
+        <h3>A single-server forest root, five roles, a certificate authority, and identity sync, all planned off one aging box around peak season.</h3>
+        <dl>
+          <dt>Situation</dt>
+          <dd>One Windows Server 2016 domain controller held all five FSMO roles, ran Entra Connect, served DNS for the network, and hosted the certificate authority every other DC trusted. The forest had been documented as three separate forests. It was one.</dd>
+          <dt>Approach</dt>
+          <dd>Audited all five domain controllers across three domains. Reviewed the CA and found 556 certificates issued and 12 still valid, so the decision was replace, not migrate. Identified the two renamed built-in administrator accounts that must never be disabled. Wrote a phased plan that does the work in autumn, idles the old server through the November and December trading freeze, and removes it in the new year.</dd>
+          <dt>Outcome</dt>
+          <dd>A forest topology document, dependency map, and cutover plan the in-house team is running, with a rollback for every phase.</dd>
+        </dl>
+        <p class="case-tools">Active Directory, ADCS, Entra Connect, PowerShell, Azure</p>
+      </article>
+
+      <article class="case" data-sectors="ecommerce healthcare">
+        <p class="case-sector">E-commerce, telehealth</p>
+        <h3>Three Azure environments for a product team, built from one idempotent script and documented before anyone asked.</h3>
+        <dl>
+          <dt>Situation</dt>
+          <dd>An innovation team needed QA, pre-production, and production resource groups with the right people in the right roles and a pipeline identity for deployments, fast, and with an audit trail.</dd>
+          <dt>Approach</dt>
+          <dd>Designed a repeatable pattern: one resource group, three Entra groups for owner, contributor, and reader assigned at group scope, and one service principal with a secret expiry on the calendar. Built QA, then parameterised the script so pre-production and production were dry-run and built the same evening.</dd>
+          <dt>Outcome</dt>
+          <dd>All three environments verified with the expected role assignments and members. A provisioning runbook published in the team's wiki, extended each time the pattern was reused, with credentials handed over through the password manager, not chat.</dd>
+        </dl>
+        <p class="case-tools">Azure CLI, Entra ID, Bash, Confluence, 1Password</p>
+      </article>
+
+      <article class="case" data-sectors="legal ecommerce">
+        <p class="case-sector">Legal, e-commerce</p>
+        <h3>A contract intake and routing system for Legal, built entirely inside Microsoft 365 for no new licence cost.</h3>
+        <dl>
+          <dt>Situation</dt>
+          <dd>Legal wanted vendor contracts submitted through one form and routed automatically to the right of six departments for review. The quotes for contract lifecycle tools ran to five figures a year.</dd>
+          <dt>Approach</dt>
+          <dd>A SharePoint list as the record, a Power Automate flow as the routing engine, and a form for intake, all on licences the company already held. Routing rules written with Legal so the decision tree matched how they actually triage.</dd>
+          <dt>Outcome</dt>
+          <dd>Ready to deploy with an estimated $59,600 to $189,600 saved over three years against buying a tool.</dd>
+        </dl>
+        <p class="case-tools">SharePoint, Power Automate, Microsoft Forms</p>
       </article>
 
       <article class="case" data-sectors="engineering">
@@ -264,6 +459,7 @@
           <dt>Outcome</dt>
           <dd>Legacy hardware decommissioned at all three sites. Acquired staff working on corporate identity and email from their first day on the new platform.</dd>
         </dl>
+        <p class="case-tools">Azure, Exchange Online, BitTitan, CloudM, Active Directory</p>
       </article>
 
       <article class="case" data-sectors="engineering">
@@ -273,10 +469,11 @@
           <dt>Situation</dt>
           <dd>Aging Cisco switching, flat networks, and Windows Server 2008 file servers across more than 100 locations.</dd>
           <dt>Approach</dt>
-          <dd>VLAN segmentation, DNS, DHCP, and VPN rebuilt to a standard design. Windows Server 2008 to 2019 with DFS replication and namespaces, Dell EMC Unity storage. Runbooks written for the service desk.</dd>
+          <dd>VLAN segmentation, DNS, DHCP, and VPN rebuilt to a standard design. Windows Server 2008 to 2019 with DFS replication and namespaces, Dell EMC Unity storage with hardware deduplication. Server lifecycle automated through Dell OpenManage. Runbooks written for the service desk.</dd>
           <dt>Outcome</dt>
           <dd>Network performance up 30 percent. Service desk resolution times down 25 percent after the knowledge base and escalation paths were built.</dd>
         </dl>
+        <p class="case-tools">Cisco, Riverbed, Windows Server, DFS, Hyper-V, Dell EMC Unity, Avamar</p>
       </article>
 
       <article class="case" data-sectors="ecommerce">
@@ -284,12 +481,27 @@
         <h3>Azure Synapse replaced with a Microsoft Fabric lakehouse, with private endpoints and cost controls.</h3>
         <dl>
           <dt>Situation</dt>
-          <dd>The analytics platform was expensive, exposed to the public internet, and nobody could say who had access to what.</dd>
+          <dd>The analytics platform was expensive, exposed to the public internet, and nobody could say who had access to what. Pipelines from Heap and GA4 fed the dashboards leadership ran the business on.</dd>
           <dt>Approach</dt>
-          <dd>Assessed the existing pipelines, designed a Bronze, Silver, Gold lakehouse in Fabric, moved the workloads, and put RBAC, private endpoints, and spend alerts in place.</dd>
+          <dd>Assessed the existing pipelines, designed a Bronze, Silver, Gold lakehouse in Fabric, moved the workloads, and put RBAC, private endpoints, and spend alerts in place. Pipeline failures routed through Splunk and Power Automate to the team that owns them.</dd>
           <dt>Outcome</dt>
-          <dd>One governed platform, access reviewable, monthly spend visible and capped.</dd>
+          <dd>One governed platform, access reviewable, monthly spend visible and capped, failures noticed by the right people before the morning meeting.</dd>
         </dl>
+        <p class="case-tools">Microsoft Fabric, Azure Synapse, Splunk, Power Automate, Power BI</p>
+      </article>
+
+      <article class="case" data-sectors="retail">
+        <p class="case-sector">Retail, apparel</p>
+        <h3>A 32-person Google Workspace tenant right-sized after an edition change doubled the bill.</h3>
+        <dl>
+          <dt>Situation</dt>
+          <dd>A small apparel company had jumped from Business Starter to Business Standard for the whole tenant, doubling the monthly cost, with departed staff still holding paid seats and mail.</dd>
+          <dt>Approach</dt>
+          <dd>Reviewed every account with the owner: who stays, who goes, where each departed person's mail and files should land. Departed accounts archived, their data and aliases transferred to the right owner, and licence tiers matched to what each role actually uses. Admin tooling isolated per client so no command can run against the wrong company.</dd>
+          <dt>Outcome</dt>
+          <dd>A clean user list the owner signed off on, nothing lost, and a bill sized to the people who actually work there.</dd>
+        </dl>
+        <p class="case-tools">Google Workspace, GAM</p>
       </article>
 
       <article class="case" data-sectors="legal healthcare">
@@ -303,6 +515,7 @@
           <dt>Outcome</dt>
           <dd>Every firm cut over on schedule. Compliance documentation accepted as delivered.</dd>
         </dl>
+        <p class="case-tools">Exchange, Office 365, Active Directory, PowerShell</p>
       </article>
 
       <article class="case" data-sectors="publishing government">
@@ -312,80 +525,229 @@
           <dt>Situation</dt>
           <dd>Publishers, financial firms, and public-sector clients running a mix of Windows Server, VMware, SonicWall, Meraki, Office 365, Google Apps, and on-prem Exchange, with no in-house engineer.</dd>
           <dt>Approach</dt>
-          <dd>Documented every environment, automated provisioning through Group Policy, and gave each client a single engineer who knew their setup.</dd>
+          <dd>Documented every environment, automated provisioning through Group Policy, standardised backups on Datto, and gave each client a single engineer who knew their setup.</dd>
           <dt>Outcome</dt>
           <dd>Predictable support, faster onboarding, and infrastructure that a new engineer could pick up from the documentation alone.</dd>
         </dl>
+        <p class="case-tools">VMware, Hyper-V, SonicWall, Meraki, Datto, ConnectWise, Office 365</p>
       </article>
     </div>
     <p class="cases-empty" hidden>No case studies in that sector yet. The approach is the same, ask about your situation.</p>
   </div>
 </section>
 
+<!-- EXPERTISE -->
+<section class="section" id="expertise">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Expertise</h2>
+      <p>What Krom is fluent in, by area. Fluent means has run it in production, broken it, fixed it, and written the runbook.</p>
+    </div>
+    <dl class="expertise">
+      <div class="exp">
+        <dt>Microsoft 365 and Exchange Online</dt>
+        <dd>Tenant design, multi-domain mail routing, coexistence, shared mailboxes and aliases at scale, distribution and unified groups, Exchange Online Protection, Defender for Office 365, DKIM and DMARC, retention and litigation hold, Teams governance, SharePoint site provisioning, Copilot rollout.</dd>
+      </div>
+      <div class="exp">
+        <dt>Identity: Entra ID and Active Directory</dt>
+        <dd>Entra Connect, Conditional Access, MFA, ADFS and SAML single sign-on, SCIM provisioning, app registrations and service principals, RBAC design, dynamic groups, forest and domain topology, FSMO, replication, DNS, certificate services, break-glass practice.</dd>
+      </div>
+      <div class="exp">
+        <dt>Azure</dt>
+        <dd>Subscriptions and resource group structure, Virtual WAN and hub and spoke, VNets, NSGs, VPN gateways, VMs and Azure Files, Azure Policy, Key Vault, backup and DR testing, Azure SQL, cost allocation by tag, Terraform for environments that must not drift.</dd>
+      </div>
+      <div class="exp">
+        <dt>Endpoints: Apple and Windows</dt>
+        <dd>Jamf Pro with Apple Business Manager zero-touch, Jamf Protect, Intune and Autopilot, compliance policies tied to Conditional Access, configuration profiles, self-service and timed admin, patch management, Atera RMM, ticket automation and SLAs.</dd>
+      </div>
+      <div class="exp">
+        <dt>Google Workspace</dt>
+        <dd>GAM and GAMADV-XTD3 at tenant scale, Drive and Admin SDK APIs, licence editions and what each actually costs, Vault export, OAuth app audits, DLP, multi-tenant admin isolation, decommission and coexistence with Microsoft 365.</dd>
+      </div>
+      <div class="exp">
+        <dt>Migration tooling</dt>
+        <dd>BitTitan MigrationWiz including its item-level audit log, CloudM, native Exchange moves, file-by-file delta verification written in Python, native format export for Docs, Sheets, Slides, Drawings, and Vids, invalid file name remediation before the move.</dd>
+      </div>
+      <div class="exp">
+        <dt>Networking</dt>
+        <dd>Cisco Catalyst switching and CLI, VLAN segmentation, Meraki, SonicWall, Riverbed, DNS and DHCP design, site-to-site and client VPN, split DNS between VPN clients and cloud VMs, the thing that is always wrong after a migration.</dd>
+      </div>
+      <div class="exp">
+        <dt>Data and reporting</dt>
+        <dd>Microsoft Fabric and Azure Synapse, lakehouse layering, Spark pools, pipelines from Heap and GA4, Splunk Cloud and Event Hubs monitoring, Power BI capacity and licence models, Power BI admin and activity APIs.</dd>
+      </div>
+      <div class="exp">
+        <dt>Automation and scripting</dt>
+        <dd>PowerShell 7 and Python 3 against Microsoft Graph, Exchange Online, Azure CLI, and Google APIs, Power Automate cloud and desktop flows, SharePoint lists as systems of record, dry-run by default, change logs on every bulk action, Confluence and Jira for the paper trail.</dd>
+      </div>
+      <div class="exp">
+        <dt>Security and compliance</dt>
+        <dd>HiTrust certification as infrastructure owner, least privilege, Conditional Access, Microsoft Defender for Cloud, Google DLP and quarantine reporting for PHI and PII, secure mail with Virtru, mailbox and Teams audit evidence for HR and legal, secret rotation calendars.</dd>
+      </div>
+    </dl>
+  </div>
+</section>
+
 <!-- PROCESS -->
-<section class="section" id="process">
+<section class="section section-alt" id="process">
   <div class="wrap process-grid">
     <div class="section-head">
       <h2>How an engagement runs</h2>
-      <p>The same five steps whether it is a 50-seat migration or a three-company integration. You always know what happens next.</p>
+      <p>The same five steps whether it is a 50-seat migration or a three-company integration. Each step ends with something written that you keep. You always know what happens next.</p>
     </div>
     <ol class="timeline">
       <li class="step">
         <span class="step-n" aria-hidden="true">1</span>
         <h3>Assess</h3>
         <p>One to two weeks. Inventory of identity, mail, files, servers, and devices. Who shares what with whom. What breaks if it moves.</p>
+        <p class="step-out">You keep: inventory workbook, risk list, a scope you can price.</p>
       </li>
       <li class="step">
         <span class="step-n" aria-hidden="true">2</span>
         <h3>Plan</h3>
         <p>A written integration path with scope, risk, and phasing per workstream. Communication templates for your people. A rollback for every cut.</p>
+        <p class="step-out">You keep: the plan, the schedule, the notices your staff will receive.</p>
       </li>
       <li class="step">
         <span class="step-n" aria-hidden="true">3</span>
         <h3>Execute</h3>
-        <p>Batches during business hours, cutovers at quiet ones. A status note every day the project is live.</p>
+        <p>Batches during business hours, cutovers at quiet ones. A status note every day the project is live. Nothing bulk runs without a dry run first.</p>
+        <p class="step-out">You keep: daily status, a log of every change made.</p>
       </li>
       <li class="step">
         <span class="step-n" aria-hidden="true">4</span>
         <h3>Stabilize</h3>
         <p>Delta checks against the source. Fix what the migration tool missed. Tune spam filtering and security. Train the staff.</p>
+        <p class="step-out">You keep: per-user verification report, tuned policies, training notes.</p>
       </li>
       <li class="step">
         <span class="step-n" aria-hidden="true">5</span>
         <h3>Hand off</h3>
         <p>Documentation and runbooks your team can run without me. Old licences cancelled. Or Krom stays on as your IT.</p>
+        <p class="step-out">You keep: runbooks in your wiki, credentials in your vault, the savings.</p>
       </li>
     </ol>
   </div>
 </section>
 
+<!-- TERMS -->
+<section class="section" id="terms">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>How Krom charges</h2>
+      <p>Three ways to engage. Every one of them comes with a written plan, a rollback, and documentation you own. There is no lock-in and no reseller margin, Krom does not sell licences.</p>
+    </div>
+    <div class="terms">
+      <div class="term">
+        <h3>Fixed-scope project</h3>
+        <p>A defined outcome, a date, and a price agreed after the assessment. Best for migrations, integrations, and builds where the finish line is clear.</p>
+        <p class="term-note">Assessment is billed separately so you can stop after it with the findings in hand.</p>
+      </div>
+      <div class="term">
+        <h3>Hourly</h3>
+        <p>Quarter-hour blocks, invoiced weekly. Every line item names what was done for whom and links to the document it produced, so you can click through to what you paid for.</p>
+        <p class="term-note">Unattended runtime is never billed. Neither is time spent on Krom's own admin.</p>
+      </div>
+      <div class="term">
+        <h3>Monthly retainer</h3>
+        <p>A block of hours a month for support, monitoring, and the small projects that never get scheduled. Unused hours roll one month. Cancel with 30 days' notice.</p>
+        <p class="term-note">Starts after a project or on its own after a short assessment of what you run.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section section-alt" id="faq">
+  <div class="wrap faq-grid">
+    <div class="section-head">
+      <h2>Questions people ask first</h2>
+      <p>If yours is not here, the contact form takes it.</p>
+    </div>
+    <div class="faq">
+      <details>
+        <summary>We have an IT team. Why bring in Krom?</summary>
+        <p>Because your team has a day job, and a migration is a second one. Krom does the specialist part, works alongside your people, and leaves them the runbook. The best outcome is your team running the environment better than before, without needing me.</p>
+      </details>
+      <details>
+        <summary>We have no IT team at all. Is that a problem?</summary>
+        <p>No, it is the second thing Krom is for. Projects for companies without IT come with more hand-holding on the front end, and most of them turn into a retainer afterwards so there is someone to call.</p>
+      </details>
+      <details>
+        <summary>What size company is this for?</summary>
+        <p>Fifty to about a thousand people is the sweet spot. Under fifty, a retainer usually makes more sense than a project. Over a thousand, Krom is one engineer, so the work is scoped to a workstream rather than the whole programme.</p>
+      </details>
+      <details>
+        <summary>Do you work remotely or on site?</summary>
+        <p>Remote first. On site across New York and New Jersey when the job calls for it, which for server rooms and acquisitions it often does.</p>
+      </details>
+      <details>
+        <summary>What happens when the migration tool says it succeeded but something is missing?</summary>
+        <p>That is the part Krom is known for. Migration tools report success per item they saw. They do not report items they never saw. Every Krom migration includes a separate comparison of source and destination, written independently of the tool, and the gaps get fixed before anything is switched off.</p>
+      </details>
+      <details>
+        <summary>Can you cut our licence bill without breaking anything?</summary>
+        <p>Yes, and the order matters. Usage is measured from the vendor's own logs, removals go out in waves with a personal notice and a date, and anyone who objects is held back. The subscription itself is downgraded last, once everyone who needs a seat has one.</p>
+      </details>
+      <details>
+        <summary>Will you resell us licences or hardware?</summary>
+        <p>No. Krom is paid for engineering time only. Recommendations are not shaped by a margin on what you buy.</p>
+      </details>
+      <details>
+        <summary>How fast can you start?</summary>
+        <p>A 30 minute call this week, a written assessment proposal within two business days of it, and assessment work usually starting within two weeks.</p>
+      </details>
+      <details>
+        <summary>What do you need from us to begin?</summary>
+        <p>An admin account with the right roles, a person on your side who can answer questions, and a list of the dates that matter, such as audits, renewals, and peak season. Everything else Krom will inventory.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
 <!-- ABOUT -->
-<section class="section section-alt" id="about">
+<section class="section" id="about">
   <div class="wrap about-grid">
     <div class="about-copy">
       <h2>Run by someone who has been on the receiving end</h2>
-      <p>Krom Technology Systems is Dane Busgith, an infrastructure engineer with more than twelve years across managed service providers, an engineering firm with over 100 offices, and an e-commerce company where he ran the environment he then migrated.</p>
-      <p>Most consultants have only ever been the consultant. Dane has been the person who gets the ticket on Monday morning after a cutover. That is why every plan here covers what happens after the migration, not just the migration.</p>
+      <p>Krom Technology Systems is Dane Busgith, an infrastructure engineer with thirteen years across managed service providers, an engineering firm with over 100 offices, and a healthcare e-commerce company where he ran the environment he then migrated.</p>
+      <p>Most consultants have only ever been the consultant. Dane has been the person who gets the ticket on Monday morning after a cutover, the one who inherits an undocumented forest, and the one who has to explain the licence bill to the CFO. That is why every plan here covers what happens after the migration, not just the migration.</p>
       <p>Based in Morristown, New Jersey. Remote first, on site across New York and New Jersey when a project calls for it.</p>
+
+      <h3 class="about-h">Where the experience comes from</h3>
+      <ol class="career">
+        <li><span class="career-when">2021 to 2026</span><span class="career-what">Ran infrastructure for a healthcare e-commerce company: on-prem to Azure, Google Workspace to Microsoft 365, HiTrust certification, Jamf and Intune, Synapse to Fabric, then the licence clean-up that followed.</span></li>
+        <li><span class="career-when">2018 to 2021</span><span class="career-what">Infrastructure and network engineer at a national engineering firm: 100+ office network overhaul, Server 2008 to 2019, three acquisition integrations, Dell EMC and Hyper-V lifecycle.</span></li>
+        <li><span class="career-when">2016 to 2018</span><span class="career-what">Systems engineer at a managed service provider: Office 365 migrations, VMware and Hyper-V builds, on-prem Exchange, SLAs for client estates.</span></li>
+        <li><span class="career-when">2013 to 2016</span><span class="career-what">Engineer at two managed service providers for publishing, finance, and government clients: Exchange 2010 to 2013, Google Apps, SonicWall and Meraki, Datto backup, Meraki MDM.</span></li>
+        <li><span class="career-when">2010 to 2014</span><span class="career-what">Apple retail, technical lead and trainer. Where the Mac fleet habit started.</span></li>
+      </ol>
     </div>
     <div class="about-side">
       <h3>Tooling</h3>
       <ul class="tags">
-        <li>Microsoft 365</li><li>Exchange Online</li><li>Entra ID</li><li>Azure</li><li>Intune</li><li>Jamf Pro</li><li>Google Workspace</li><li>BitTitan</li><li>CloudM</li><li>Active Directory</li><li>ADFS</li><li>PowerShell</li><li>Python</li><li>Splunk</li><li>Microsoft Fabric</li>
+        <li>Microsoft 365</li><li>Exchange Online</li><li>Entra ID</li><li>Active Directory</li><li>ADFS</li><li>Azure</li><li>Azure Policy</li><li>Terraform</li><li>Intune</li><li>Autopilot</li><li>Jamf Pro</li><li>Apple Business Manager</li><li>Google Workspace</li><li>GAM</li><li>BitTitan MigrationWiz</li><li>CloudM</li><li>Microsoft Graph</li><li>PowerShell</li><li>Python</li><li>Power Automate</li><li>SharePoint</li><li>Power BI</li><li>Microsoft Fabric</li><li>Azure Synapse</li><li>Splunk</li><li>Atera</li><li>Cisco</li><li>Meraki</li><li>SonicWall</li><li>VMware</li><li>Hyper-V</li><li>Confluence</li><li>Jira</li>
       </ul>
       <h3>Certifications</h3>
       <ul class="plain">
         <li>Microsoft Certified: Azure Fundamentals</li>
-        <li>MCSA: Windows Server 2016</li>
+        <li>MCSA: Windows Server 2012 and 2016</li>
         <li>Microsoft Certified Professional</li>
-        <li>Dell Certified Professional</li>
+        <li>Dell Certified Professional, PowerEdge and EMC</li>
+        <li>StormWind Academy: Windows Server 2019</li>
+      </ul>
+      <h3>Compliance work</h3>
+      <ul class="plain">
+        <li>HiTrust, as infrastructure owner through certification</li>
+        <li>PHI and PII handling under HIPAA-aligned controls</li>
+        <li>Audit evidence packs for insurers and SOC 2 readiness</li>
       </ul>
     </div>
   </div>
 </section>
 
 <!-- CONTACT -->
-<section class="section" id="contact">
+<section class="section section-alt" id="contact">
   <div class="wrap contact-grid">
     <div class="contact-form-col">
       <h2>Tell me about your project</h2>
@@ -412,10 +774,15 @@
           <select name="need" required>
             <option value="" selected disabled>Choose one</option>
             <option>Email or tenant migration</option>
+            <option>Google Workspace decommission</option>
             <option>Acquisition integration</option>
             <option>Servers to Azure</option>
             <option>Identity and Zero Trust</option>
+            <option>Active Directory modernization</option>
             <option>Endpoint management</option>
+            <option>Licence and SaaS cost reduction</option>
+            <option>Automation or internal tooling</option>
+            <option>Data platform and reporting</option>
             <option>Ongoing IT support</option>
             <option>Not sure yet</option>
           </select>
@@ -452,7 +819,10 @@
     <nav class="footer-nav" aria-label="Footer">
       <a href="#services">Services</a>
       <a href="#work">Work</a>
+      <a href="#expertise">Expertise</a>
       <a href="#process">Process</a>
+      <a href="#terms">Terms</a>
+      <a href="#faq">FAQ</a>
       <a href="#about">About</a>
       <a href="mailto:dane@krom.systems">dane@krom.systems</a>
     </nav>

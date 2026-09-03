@@ -61,13 +61,14 @@
   function runCounter(el) {
     var target = parseInt(el.getAttribute('data-count'), 10);
     var suffix = el.getAttribute('data-suffix') || '';
-    if (reduceMotion || target === 0) { el.textContent = fmt(target) + suffix; return; }
+    var prefix = el.getAttribute('data-prefix') || '';
+    if (reduceMotion || target === 0) { el.textContent = prefix + fmt(target) + suffix; return; }
     var dur = 1100, start = null;
     function tick(ts) {
       if (!start) start = ts;
       var p = Math.min((ts - start) / dur, 1);
       var eased = 1 - Math.pow(1 - p, 3);
-      el.textContent = fmt(Math.round(target * eased)) + suffix;
+      el.textContent = prefix + fmt(Math.round(target * eased)) + suffix;
       if (p < 1) requestAnimationFrame(tick);
     }
     requestAnimationFrame(tick);
