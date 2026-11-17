@@ -6,6 +6,8 @@
 <title>Krom Technology Systems | Enterprise-grade IT, sized to your budget</title>
 <meta name="description" content="Infrastructure, backups, security, and data loss prevention on Microsoft 365 and Google Workspace for medical and dental practices, law firms, engineering firms, startups, and growing businesses.">
 <meta name="theme-color" content="#F7F5F0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src https://formspree.io; form-action https://formspree.io; base-uri 'self'; object-src 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -94,17 +96,39 @@
       <div class="calc-copy">
         <p class="eyebrow"><span class="dot"></span>Quick check</p>
         <h2>What are you paying for that <span class="accent">nobody uses?</span></h2>
-        <p>Move the sliders. In two licence audits I ran in 2026, 55% and 77% of paid seats turned out to be unused.</p>
+        <p>Pick your licences, type your seat counts, and see what idle seats cost you. In two licence audits I ran in 2026, 55% and 77% of paid seats turned out to be unused.</p>
       </div>
-      <form class="calc-ui" onsubmit="return false">
-        <label><span>Paid seats <output data-for="seats">50</output></span><input type="range" name="seats" min="5" max="500" step="5" value="50"></label>
-        <label><span>Average cost per seat, per month <output data-for="price">$25</output></span><input type="range" name="price" min="6" max="60" step="1" value="25"></label>
-        <label><span>Seats nobody really uses <output data-for="unused">20%</output></span><input type="range" name="unused" min="5" max="60" step="5" value="20"></label>
+      <form class="calc-ui" novalidate>
+        <div class="calc-rows">
+          <div class="calc-row">
+            <label class="cr-plan"><span>Licence</span><select name="plan"><optgroup label="Google Workspace"><option value="gws-starter" data-price="7">Google Workspace Business Starter</option><option value="gws-standard" data-price="14">Google Workspace Business Standard</option><option value="gws-plus" data-price="22">Google Workspace Business Plus</option><option value="gws-ent" data-price="0">Google Workspace Enterprise (enter your price)</option></optgroup><optgroup label="Microsoft 365"><option value="m365-basic" data-price="7">Microsoft 365 Business Basic</option><option value="m365-standard" data-price="14" selected>Microsoft 365 Business Standard</option><option value="m365-premium" data-price="22">Microsoft 365 Business Premium</option><option value="o365-e3" data-price="26">Office 365 E3</option><option value="m365-e3" data-price="39">Microsoft 365 E3</option><option value="m365-e5" data-price="60">Microsoft 365 E5</option></optgroup><optgroup label="Add-ons"><option value="copilot" data-price="30">Microsoft 365 Copilot</option><option value="pbi-pro" data-price="14">Power BI Pro</option><option value="pbi-ppu" data-price="24">Power BI Premium Per User</option></optgroup><optgroup label="Other"><option value="other" data-price="0">Something else (enter your price)</option></optgroup></select></label>
+            <label class="cr-seats"><span>Seats</span><input type="number" name="seats" inputmode="numeric" min="1" max="100000" step="1" value="50"></label>
+            <label class="cr-price"><span>$ per seat / mo</span><input type="number" name="price" inputmode="decimal" min="0" max="1000" step="0.01" value="14"></label>
+            <button type="button" class="cr-del" aria-label="Remove this licence"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+          </div>
+        </div>
+        <template id="calc-row-tpl"><div class="calc-row">
+            <label class="cr-plan"><span>Licence</span><select name="plan"><optgroup label="Google Workspace"><option value="gws-starter" data-price="7">Google Workspace Business Starter</option><option value="gws-standard" data-price="14" selected>Google Workspace Business Standard</option><option value="gws-plus" data-price="22">Google Workspace Business Plus</option><option value="gws-ent" data-price="0">Google Workspace Enterprise (enter your price)</option></optgroup><optgroup label="Microsoft 365"><option value="m365-basic" data-price="7">Microsoft 365 Business Basic</option><option value="m365-standard" data-price="14">Microsoft 365 Business Standard</option><option value="m365-premium" data-price="22">Microsoft 365 Business Premium</option><option value="o365-e3" data-price="26">Office 365 E3</option><option value="m365-e3" data-price="39">Microsoft 365 E3</option><option value="m365-e5" data-price="60">Microsoft 365 E5</option></optgroup><optgroup label="Add-ons"><option value="copilot" data-price="30">Microsoft 365 Copilot</option><option value="pbi-pro" data-price="14">Power BI Pro</option><option value="pbi-ppu" data-price="24">Power BI Premium Per User</option></optgroup><optgroup label="Other"><option value="other" data-price="0">Something else (enter your price)</option></optgroup></select></label>
+            <label class="cr-seats"><span>Seats</span><input type="number" name="seats" inputmode="numeric" min="1" max="100000" step="1" value="25"></label>
+            <label class="cr-price"><span>$ per seat / mo</span><input type="number" name="price" inputmode="decimal" min="0" max="1000" step="0.01" value="14"></label>
+            <button type="button" class="cr-del" aria-label="Remove this licence"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+          </div></template>
+        <button type="button" class="calc-add"><span aria-hidden="true">+</span> Add another licence</button>
+        <div class="calc-opts">
+          <div class="seg" role="group" aria-label="Billing">
+            <button type="button" aria-pressed="true" data-bill="1">Annual</button>
+            <button type="button" aria-pressed="false" data-bill="1.2">Monthly / flexible</button>
+          </div>
+          <label class="calc-unused"><span>Seats nobody really uses</span>
+            <span class="unused-ctl"><input type="range" name="unused" min="0" max="90" step="1" value="20" aria-label="Unused percent, slider"><input type="number" name="unused-n" min="0" max="90" step="1" value="20" aria-label="Unused percent"><b>%</b></span>
+          </label>
+        </div>
         <div class="calc-out" aria-live="polite">
-          <span class="calc-n">$3,000</span>
-          <span class="calc-l">a year on seats nobody uses, before the tools you forgot you had.</span>
+          <span class="calc-n">$1,680</span>
+          <span class="calc-l">a year on seats nobody uses, out of <b class="calc-total">$8,400</b> a year in total.</span>
         </div>
         <a class="btn btn-primary" href="#contact">Find my real number</a>
+        <p class="calc-fine">Prices are US list prices with annual commitment. Change any number to match your invoice.</p>
       </form>
     </div>
   </div>
@@ -230,8 +254,8 @@
     <form class="form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" novalidate data-reveal>
       <h3>Tell me what you need</h3>
       <div class="field-row">
-        <label>Name<input type="text" name="name" autocomplete="name" required></label>
-        <label>Email<input type="email" name="email" autocomplete="email" required></label>
+        <label>Name<input type="text" name="name" autocomplete="name" maxlength="100" required></label>
+        <label>Email<input type="email" name="email" autocomplete="email" maxlength="254" required></label>
       </div>
       <div class="field-row">
         <label>Industry
@@ -241,13 +265,13 @@
           <select name="size" required><option value="" selected disabled>Choose one</option><option>1 to 10</option><option>10 to 50</option><option>50 to 250</option><option>250 to 1,000</option><option>1,000+</option></select>
         </label>
       </div>
-      <label>What is going on<textarea name="message" rows="4" placeholder="What you run now, what worries you, any dates that matter."></textarea></label>
+      <label>What is going on<textarea name="message" rows="4" maxlength="2000" placeholder="What you run now, what worries you, any dates that matter."></textarea></label>
       <input type="text" name="_gotcha" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
       <div class="form-actions">
         <button class="btn btn-primary" type="submit">Send</button>
         <p class="form-status" role="status" aria-live="polite"></p>
       </div>
-      <p class="form-alt">Or email <a href="mailto:dane@krom.systems">dane@krom.systems</a></p>
+      <p class="form-alt">Or email <a class="js-mail" data-u="dane" data-d="krom.systems" href="#contact">dane [at] krom.systems</a></p>
     </form>
   </div>
 </section>
@@ -256,7 +280,7 @@
   <div class="wrap footer-row">
     <span class="brand-name">Krom<span class="brand-sub">Technology Systems</span></span>
     <p>Morristown, New Jersey. Remote everywhere, on site across NY and NJ.</p>
-    <p><a href="mailto:dane@krom.systems">dane@krom.systems</a> &nbsp;&copy; <span data-year>2026</span> Krom Technology Systems LLC</p>
+    <p><a class="js-mail" data-u="dane" data-d="krom.systems" href="#contact">dane [at] krom.systems</a> &nbsp;&copy; <span data-year>2026</span> Krom Technology Systems LLC</p>
   </div>
 </footer>
 <script src="main.js"></script>

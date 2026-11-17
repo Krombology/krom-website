@@ -9,7 +9,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).parent
 CAL = "https://calendly.com/krom-systems/30min"
-EMAIL = "dane@krom.systems"
+MAIL = '<a class="js-mail" data-u="dane" data-d="krom.systems" href="#contact">dane [at] krom.systems</a>'
 
 # Line-art motifs, drawn with pathLength=1 so CSS can animate the stroke.
 MOTIF = {
@@ -104,6 +104,39 @@ PILLARS = [
 ]
 
 
+# List price per user per month, USD, annual commitment. Monthly/flexible billing
+# is roughly 20% more on both Google and Microsoft, handled by the billing toggle.
+# Visitors can overwrite any price, so these are starting points, not quotes.
+PLANS = [
+    ("Google Workspace", [("gws-starter", "Business Starter", 7), ("gws-standard", "Business Standard", 14),
+                          ("gws-plus", "Business Plus", 22), ("gws-ent", "Enterprise (enter your price)", 0)]),
+    ("Microsoft 365", [("m365-basic", "Business Basic", 7), ("m365-standard", "Business Standard", 14),
+                       ("m365-premium", "Business Premium", 22), ("o365-e3", "Office 365 E3", 26),
+                       ("m365-e3", "Microsoft 365 E3", 39), ("m365-e5", "Microsoft 365 E5", 60)]),
+    ("Add-ons", [("copilot", "Microsoft 365 Copilot", 30), ("pbi-pro", "Power BI Pro", 14),
+                 ("pbi-ppu", "Power BI Premium Per User", 24)]),
+    ("Other", [("other", "Something else (enter your price)", 0)]),
+]
+
+
+def plan_options(selected="m365-standard"):
+    out = []
+    for group, items in PLANS:
+        pre = group + " " if group in ("Google Workspace", "Microsoft 365") else ""
+        opts = "".join(f'<option value="{k}" data-price="{p}"{" selected" if k == selected else ""}>{"" if n.startswith(("Microsoft", "Office")) else pre}{n}</option>' for k, n, p in items)
+        out.append(f'<optgroup label="{group}">{opts}</optgroup>')
+    return "".join(out)
+
+
+def calc_row(selected="m365-standard", seats=50, price=14):
+    return f"""<div class="calc-row">
+            <label class="cr-plan"><span>Licence</span><select name="plan">{plan_options(selected)}</select></label>
+            <label class="cr-seats"><span>Seats</span><input type="number" name="seats" inputmode="numeric" min="1" max="100000" step="1" value="{seats}"></label>
+            <label class="cr-price"><span>$ per seat / mo</span><input type="number" name="price" inputmode="decimal" min="0" max="1000" step="0.01" value="{price}"></label>
+            <button type="button" class="cr-del" aria-label="Remove this licence"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+          </div>"""
+
+
 def motif(slug, cls="motif"):
     return (f'<svg class="{cls}" viewBox="0 0 120 60" aria-hidden="true">'
             f'<path d="{MOTIF[slug]}" pathLength="1"/></svg>')
@@ -118,6 +151,8 @@ def head(title, desc, depth=""):
 <title>{escape(title)}</title>
 <meta name="description" content="{escape(desc)}">
 <meta name="theme-color" content="#F7F5F0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src https://formspree.io; form-action https://formspree.io; base-uri 'self'; object-src 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -151,7 +186,7 @@ FOOT = f"""</main>
   <div class="wrap footer-row">
     <span class="brand-name">Krom<span class="brand-sub">Technology Systems</span></span>
     <p>Morristown, New Jersey. Remote everywhere, on site across NY and NJ.</p>
-    <p><a href="mailto:{EMAIL}">{EMAIL}</a> &nbsp;&copy; <span data-year>2026</span> Krom Technology Systems LLC</p>
+    <p>{MAIL} &nbsp;&copy; <span data-year>2026</span> Krom Technology Systems LLC</p>
   </div>
 </footer>
 <script src="main.js"></script>
@@ -257,17 +292,29 @@ def index():
       <div class="calc-copy">
         <p class="eyebrow"><span class="dot"></span>Quick check</p>
         <h2>What are you paying for that <span class="accent">nobody uses?</span></h2>
-        <p>Move the sliders. In two licence audits I ran in 2026, 55% and 77% of paid seats turned out to be unused.</p>
+        <p>Pick your licences, type your seat counts, and see what idle seats cost you. In two licence audits I ran in 2026, 55% and 77% of paid seats turned out to be unused.</p>
       </div>
-      <form class="calc-ui" onsubmit="return false">
-        <label><span>Paid seats <output data-for="seats">50</output></span><input type="range" name="seats" min="5" max="500" step="5" value="50"></label>
-        <label><span>Average cost per seat, per month <output data-for="price">$25</output></span><input type="range" name="price" min="6" max="60" step="1" value="25"></label>
-        <label><span>Seats nobody really uses <output data-for="unused">20%</output></span><input type="range" name="unused" min="5" max="60" step="5" value="20"></label>
+      <form class="calc-ui" novalidate>
+        <div class="calc-rows">
+          {calc_row()}
+        </div>
+        <template id="calc-row-tpl">{calc_row("gws-standard", 25, 14)}</template>
+        <button type="button" class="calc-add"><span aria-hidden="true">+</span> Add another licence</button>
+        <div class="calc-opts">
+          <div class="seg" role="group" aria-label="Billing">
+            <button type="button" aria-pressed="true" data-bill="1">Annual</button>
+            <button type="button" aria-pressed="false" data-bill="1.2">Monthly / flexible</button>
+          </div>
+          <label class="calc-unused"><span>Seats nobody really uses</span>
+            <span class="unused-ctl"><input type="range" name="unused" min="0" max="90" step="1" value="20" aria-label="Unused percent, slider"><input type="number" name="unused-n" min="0" max="90" step="1" value="20" aria-label="Unused percent"><b>%</b></span>
+          </label>
+        </div>
         <div class="calc-out" aria-live="polite">
-          <span class="calc-n">$3,000</span>
-          <span class="calc-l">a year on seats nobody uses, before the tools you forgot you had.</span>
+          <span class="calc-n">$1,680</span>
+          <span class="calc-l">a year on seats nobody uses, out of <b class="calc-total">$8,400</b> a year in total.</span>
         </div>
         <a class="btn btn-primary" href="#contact">Find my real number</a>
+        <p class="calc-fine">Prices are US list prices with annual commitment. Change any number to match your invoice.</p>
       </form>
     </div>
   </div>
@@ -315,8 +362,8 @@ def index():
     <form class="form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" novalidate data-reveal>
       <h3>Tell me what you need</h3>
       <div class="field-row">
-        <label>Name<input type="text" name="name" autocomplete="name" required></label>
-        <label>Email<input type="email" name="email" autocomplete="email" required></label>
+        <label>Name<input type="text" name="name" autocomplete="name" maxlength="100" required></label>
+        <label>Email<input type="email" name="email" autocomplete="email" maxlength="254" required></label>
       </div>
       <div class="field-row">
         <label>Industry
@@ -326,13 +373,13 @@ def index():
           <select name="size" required><option value="" selected disabled>Choose one</option><option>1 to 10</option><option>10 to 50</option><option>50 to 250</option><option>250 to 1,000</option><option>1,000+</option></select>
         </label>
       </div>
-      <label>What is going on<textarea name="message" rows="4" placeholder="What you run now, what worries you, any dates that matter."></textarea></label>
+      <label>What is going on<textarea name="message" rows="4" maxlength="2000" placeholder="What you run now, what worries you, any dates that matter."></textarea></label>
       <input type="text" name="_gotcha" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
       <div class="form-actions">
         <button class="btn btn-primary" type="submit">Send</button>
         <p class="form-status" role="status" aria-live="polite"></p>
       </div>
-      <p class="form-alt">Or email <a href="mailto:{EMAIL}">{EMAIL}</a></p>
+      <p class="form-alt">Or email {MAIL}</p>
     </form>
   </div>
 </section>

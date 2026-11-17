@@ -81,33 +81,71 @@
     }, 3200);
   }
 
-  /* Savings calculator */
+  /* Savings calculator: one row per licence, typed seats and prices */
   var calc = document.querySelector('.calc-ui');
   if (calc) {
-    var out = calc.querySelector('.calc-n'), shown = 3000;
-    var fmt = function (n) { return '$' + Math.round(n).toLocaleString('en-US'); };
-    function update() {
-      var v = {};
-      Array.prototype.forEach.call(calc.querySelectorAll('input[type=range]'), function (r) {
-        v[r.name] = +r.value;
-        r.style.setProperty('--fill', (r.value - r.min) / (r.max - r.min) * 100 + '%');
+    var rows = calc.querySelector('.calc-rows'), tpl = document.getElementById('calc-row-tpl');
+    var out = calc.querySelector('.calc-n'), totalEl = calc.querySelector('.calc-total');
+    var range = calc.querySelector('[name=unused]'), unusedN = calc.querySelector('[name=unused-n]');
+    var bill = 1, shown = 0;
+    var money = function (n) { return '$' + Math.round(n).toLocaleString('en-US'); };
+    var num = function (el, max) { var v = parseFloat(el.value); return isFinite(v) ? Math.min(Math.max(v, 0), max) : 0; };
+
+    function compute() {
+      var total = 0;
+      Array.prototype.forEach.call(rows.querySelectorAll('.calc-row'), function (r) {
+        total += num(r.querySelector('[name=seats]'), 100000) * num(r.querySelector('[name=price]'), 1000) * 12 * bill;
       });
-      calc.querySelector('[data-for=seats]').textContent = v.seats;
-      calc.querySelector('[data-for=price]').textContent = '$' + v.price;
-      calc.querySelector('[data-for=unused]').textContent = v.unused + '%';
-      var target = v.seats * v.price * 12 * v.unused / 100, from = shown, t0 = null;
-      if (reduce) { shown = target; out.textContent = fmt(target); return; }
+      var pct = num(unusedN, 90);
+      range.style.setProperty('--fill', pct / 90 * 100 + '%');
+      totalEl.textContent = money(total);
+      var target = total * pct / 100, from = shown, t0 = null;
+      shown = target;
+      if (reduce) { out.textContent = money(target); return; }
       out.classList.remove('is-bump'); void out.offsetWidth; out.classList.add('is-bump');
       requestAnimationFrame(function tick(ts) {
         t0 = t0 || ts;
         var p = Math.min((ts - t0) / 450, 1);
-        shown = from + (target - from) * (1 - Math.pow(1 - p, 3));
-        out.textContent = fmt(shown);
+        out.textContent = money(from + (target - from) * (1 - Math.pow(1 - p, 3)));
         if (p < 1) requestAnimationFrame(tick);
       });
     }
-    calc.addEventListener('input', update);
-    update();
+    function syncDel() {
+      var all = rows.querySelectorAll('.calc-row');
+      Array.prototype.forEach.call(all, function (r) { r.querySelector('.cr-del').hidden = all.length < 2; });
+    }
+    calc.addEventListener('submit', function (e) { e.preventDefault(); });
+    calc.addEventListener('input', function (e) {
+      if (e.target === range) unusedN.value = range.value;
+      if (e.target === unusedN) range.value = num(unusedN, 90);
+      compute();
+    });
+    calc.addEventListener('change', function (e) {
+      if (e.target.name === 'plan') {
+        var price = +e.target.selectedOptions[0].getAttribute('data-price');
+        var priceIn = e.target.closest('.calc-row').querySelector('[name=price]');
+        priceIn.value = price || '';
+        if (!price) priceIn.focus();
+        compute();
+      }
+    });
+    calc.addEventListener('click', function (e) {
+      var del = e.target.closest('.cr-del');
+      if (del) { del.closest('.calc-row').remove(); syncDel(); compute(); }
+      var b = e.target.closest('[data-bill]');
+      if (b) {
+        bill = +b.getAttribute('data-bill');
+        Array.prototype.forEach.call(calc.querySelectorAll('[data-bill]'), function (x) { x.setAttribute('aria-pressed', String(x === b)); });
+        compute();
+      }
+    });
+    calc.querySelector('.calc-add').addEventListener('click', function () {
+      if (rows.children.length >= 8) return;
+      var row = tpl.content.firstElementChild.cloneNode(true);
+      rows.appendChild(row); syncDel(); compute();
+      row.querySelector('select').focus();
+    });
+    syncDel(); compute();
   }
 
   /* Cursor spotlight on tiles */
@@ -132,23 +170,43 @@
     });
   }
 
-  /* Contact form: prefill industry from ?industry=, submit via Formspree */
+  /* Email address assembled in the browser so scrapers reading the HTML do not get it */
+  var mail = ['dane', 'krom.systems'].join('@');
+  $$('.js-mail').forEach(function (a) {
+    a.textContent = a.getAttribute('data-u') + '@' + a.getAttribute('data-d');
+    a.href = 'mailto:' + a.textContent;
+  });
+
+  /* Contact form: prefill industry, then bot checks before anything is sent.
+     Honeypot field, a minimum time on page, a real interaction, link spam check,
+     and a one-minute cooldown. Bots that trip a check get a fake success. */
   var form = document.querySelector('.form');
   if (form) {
     var ind = new URLSearchParams(location.search).get('industry');
     var sel = form.querySelector('[name="industry"]');
     if (ind && sel && sel.querySelector('option[value="' + ind + '"]')) sel.value = ind;
-    var status = form.querySelector('.form-status');
+    var status = form.querySelector('.form-status'), loaded = Date.now(), human = false;
+    ['pointerdown', 'keydown', 'touchstart'].forEach(function (ev) { form.addEventListener(ev, function () { human = true; }, { once: true, passive: true }); });
+    function say(msg, cls) { status.className = 'form-status ' + (cls || ''); status.textContent = msg; }
     form.addEventListener('submit', function (e) {
       e.preventDefault();
-      status.className = 'form-status';
-      if (!form.checkValidity()) { form.reportValidity(); status.textContent = 'A required field is missing.'; status.classList.add('is-err'); return; }
-      if (form.action.indexOf('YOUR_FORM_ID') !== -1) { status.textContent = 'The form is not connected yet. Email dane@krom.systems instead.'; status.classList.add('is-err'); return; }
+      if (!form.checkValidity()) { form.reportValidity(); say('A required field is missing.', 'is-err'); return; }
+      var data = new FormData(form), msg = String(data.get('message') || '');
+      var bot = data.get('_gotcha') || Date.now() - loaded < 4000 || !human || (msg.match(/https?:\/\//g) || []).length > 2;
+      if (bot) { form.reset(); say('Sent. I will reply within one business day.', 'is-ok'); return; }
+      var last = 0;
+      try { last = +localStorage.getItem('krom-sent') || 0; } catch (err) {}
+      if (Date.now() - last < 60000) { say('Already sent. Give it a minute before sending another.', 'is-err'); return; }
+      if (form.action.indexOf('YOUR_FORM_ID') !== -1) { say('The form is not connected yet. Email ' + mail + ' instead.', 'is-err'); return; }
       var btn = form.querySelector('button[type="submit"]');
-      btn.disabled = true; status.textContent = 'Sending';
-      fetch(form.action, { method: 'POST', headers: { Accept: 'application/json' }, body: new FormData(form) })
-        .then(function (r) { if (!r.ok) throw 0; form.reset(); status.textContent = 'Sent. I will reply within one business day.'; status.classList.add('is-ok'); })
-        .catch(function () { status.textContent = 'That did not go through. Email dane@krom.systems instead.'; status.classList.add('is-err'); })
+      btn.disabled = true; say('Sending');
+      fetch(form.action, { method: 'POST', headers: { Accept: 'application/json' }, body: data })
+        .then(function (r) {
+          if (!r.ok) throw 0;
+          try { localStorage.setItem('krom-sent', Date.now()); } catch (err) {}
+          form.reset(); say('Sent. I will reply within one business day.', 'is-ok');
+        })
+        .catch(function () { say('That did not go through. Email ' + mail + ' instead.', 'is-err'); })
         .finally(function () { btn.disabled = false; });
     });
   }
