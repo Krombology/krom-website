@@ -65,6 +65,51 @@
     }, 2800);
   }
 
+  /* Headline rotator */
+  var rot = document.querySelector('.rotator'), squig = document.querySelector('.squiggle');
+  if (rot && !reduce) {
+    var words = ['budget.', 'practice.', 'law firm.', 'startup.', 'shop.', 'budget.'], wi = 0;
+    setTimeout(function next() {
+      wi = (wi + 1) % words.length;
+      rot.classList.remove('is-in'); rot.classList.add('is-out');
+      setTimeout(function () {
+        rot.textContent = words[wi];
+        rot.classList.remove('is-out'); rot.classList.add('is-in');
+        squig.classList.add('is-redraw'); void squig.offsetWidth; squig.classList.remove('is-redraw');
+      }, 350);
+      setTimeout(next, wi === words.length - 1 ? 6000 : 2200);
+    }, 3200);
+  }
+
+  /* Savings calculator */
+  var calc = document.querySelector('.calc-ui');
+  if (calc) {
+    var out = calc.querySelector('.calc-n'), shown = 3000;
+    var fmt = function (n) { return '$' + Math.round(n).toLocaleString('en-US'); };
+    function update() {
+      var v = {};
+      Array.prototype.forEach.call(calc.querySelectorAll('input[type=range]'), function (r) {
+        v[r.name] = +r.value;
+        r.style.setProperty('--fill', (r.value - r.min) / (r.max - r.min) * 100 + '%');
+      });
+      calc.querySelector('[data-for=seats]').textContent = v.seats;
+      calc.querySelector('[data-for=price]').textContent = '$' + v.price;
+      calc.querySelector('[data-for=unused]').textContent = v.unused + '%';
+      var target = v.seats * v.price * 12 * v.unused / 100, from = shown, t0 = null;
+      if (reduce) { shown = target; out.textContent = fmt(target); return; }
+      out.classList.remove('is-bump'); void out.offsetWidth; out.classList.add('is-bump');
+      requestAnimationFrame(function tick(ts) {
+        t0 = t0 || ts;
+        var p = Math.min((ts - t0) / 450, 1);
+        shown = from + (target - from) * (1 - Math.pow(1 - p, 3));
+        out.textContent = fmt(shown);
+        if (p < 1) requestAnimationFrame(tick);
+      });
+    }
+    calc.addEventListener('input', update);
+    update();
+  }
+
   /* Cursor spotlight on tiles */
   $$('.tile').forEach(function (t) {
     t.addEventListener('pointermove', function (e) {

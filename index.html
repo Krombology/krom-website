@@ -24,7 +24,7 @@
     <nav class="nav-links" aria-label="Main">
       <a href="index.html#industries">Industries</a>
       <a href="index.html#coverage">Coverage</a>
-      <a href="index.html#approach">Approach</a>
+      <a href="index.html#savings">Savings</a>
       <a href="index.html#contact">Contact</a>
       <a class="btn btn-primary btn-small" href="https://calendly.com/krom-systems/30min" target="_blank" rel="noopener">Book a call</a>
     </nav>
@@ -36,7 +36,7 @@
   <div class="wrap hero-grid">
     <div class="hero-copy">
       <p class="eyebrow"><span class="dot"></span>Infrastructure, backups, security, DLP</p>
-      <h1>Enterprise&#8209;grade IT, <span class="accent">sized to your budget.<svg class="squiggle" viewBox="0 0 340 14" preserveAspectRatio="none" aria-hidden="true"><path d="M2 10 C 60 2, 120 14, 180 7 S 290 3, 338 9" pathLength="1"/></svg></span></h1>
+      <h1><span class="sr">Enterprise-grade IT, sized to your budget.</span><span aria-hidden="true">Enterprise&#8209;grade IT, <span class="accent">sized to your <span class="rotator">budget.</span><svg class="squiggle" viewBox="0 0 340 14" preserveAspectRatio="none" aria-hidden="true"><path d="M2 10 C 60 2, 120 14, 180 7 S 290 3, 338 9" pathLength="1"/></svg></span></span></h1>
       <p class="lede">One senior engineer for practices, firms, startups, and the shop on Main Street. Microsoft 365 or Google, set up properly, backed up for real, and locked down.</p>
       <div class="hero-actions">
         <a class="btn btn-primary" href="https://calendly.com/krom-systems/30min" target="_blank" rel="noopener">Book a free 30 minute call</a>
@@ -51,6 +51,12 @@
     </div>
 
     <div class="stage" aria-label="Example of what Krom watches for a client">
+      <svg class="wires" viewBox="0 0 560 470" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M150 140 C 220 200, 300 170, 400 230"/>
+        <path d="M420 300 C 380 360, 330 360, 250 400"/>
+        <path d="M260 90 C 330 60, 380 70, 450 70"/>
+        <path d="M120 150 C 60 260, 80 330, 150 380"/>
+      </svg>
       <div class="layer" style="--z:1.2"><div class="hcard hc-backup">
         <div class="hc-head"><span>Nightly backup</span><span class="ok">Verified</span></div>
         <div class="ring-row">
@@ -78,6 +84,28 @@
       </div></div>
 
       <div class="layer" style="--z:2.4"><div class="pill hc-patch"><i></i>Patches up to date</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section-tight" id="savings">
+  <div class="wrap">
+    <div class="calc" data-reveal>
+      <div class="calc-copy">
+        <p class="eyebrow"><span class="dot"></span>Quick check</p>
+        <h2>What are you paying for that <span class="accent">nobody uses?</span></h2>
+        <p>Move the sliders. In two licence audits I ran in 2026, 55% and 77% of paid seats turned out to be unused.</p>
+      </div>
+      <form class="calc-ui" onsubmit="return false">
+        <label><span>Paid seats <output data-for="seats">50</output></span><input type="range" name="seats" min="5" max="500" step="5" value="50"></label>
+        <label><span>Average cost per seat, per month <output data-for="price">$25</output></span><input type="range" name="price" min="6" max="60" step="1" value="25"></label>
+        <label><span>Seats nobody really uses <output data-for="unused">20%</output></span><input type="range" name="unused" min="5" max="60" step="5" value="20"></label>
+        <div class="calc-out" aria-live="polite">
+          <span class="calc-n">$3,000</span>
+          <span class="calc-l">a year on seats nobody uses, before the tools you forgot you had.</span>
+        </div>
+        <a class="btn btn-primary" href="#contact">Find my real number</a>
+      </form>
     </div>
   </div>
 </section>
@@ -186,20 +214,6 @@
           <p data-t="small">A few hours a month and one person who knows you by name.</p><p data-t="growing">Monitoring, patching, onboarding, and offboarding on a retainer.</p><p data-t="enterprise">Projects per workstream and a fractional IT lead in between.</p>
         </article>
     </div>
-  </div>
-</section>
-
-<section class="section" id="approach">
-  <div class="wrap">
-    <div class="section-head split" data-reveal>
-      <h2>How it <span class="accent">works.</span></h2>
-      <p>No jargon, no surprise invoices, and you own everything at the end.</p>
-    </div>
-    <ol class="steps">
-      <li data-reveal><span class="step-n">01</span><h3>Look</h3><p>A free call, then a short review of what you run today and what worries you.</p></li>
-      <li data-reveal><span class="step-n">02</span><h3>Plan</h3><p>A written plan with a fixed price, sized to your budget. You decide what goes in.</p></li>
-      <li data-reveal><span class="step-n">03</span><h3>Fix &amp; document</h3><p>The work done carefully, tested, and written up so anyone can run it after.</p></li>
-    </ol>
   </div>
 </section>
 
