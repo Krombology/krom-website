@@ -59,33 +59,28 @@
         <path d="M260 90 C 330 60, 380 70, 450 70"/>
         <path d="M120 150 C 60 260, 80 330, 150 380"/>
       </svg>
-      <div class="layer" style="--z:1.2"><div class="hcard hc-backup">
-        <div class="hc-head"><span>Nightly backup</span><span class="ok">Verified</span></div>
-        <div class="ring-row">
-          <svg class="ring" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="26" class="ring-bg"/><circle cx="32" cy="32" r="26" class="ring-fg" pathLength="100"/></svg>
-          <div><b class="ring-n" data-count="100" data-suffix="%">100%</b><span>Restore tested this week</span></div>
-        </div>
-      </div></div>
+      <div class="layer" style="--z:1.2"><div class="hcard hc-backup" data-cycle><div class="face is-on"><div class="hc-head"><span>Nightly backup</span><span class="ok">Verified</span></div>
+          <div class="ring-row"><svg class="ring ring-ok" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="26" class="ring-bg"/><circle cx="32" cy="32" r="26" class="ring-fg" pathLength="100"/></svg>
+          <div><b class="ring-n">100%</b><span>Restore tested this week</span></div></div></div><div class="face"><div class="hc-head"><span>Laptops patched</span><span class="ok">Done</span></div>
+          <div class="ring-row"><svg class="ring ring-ok" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="26" class="ring-bg"/><circle cx="32" cy="32" r="26" class="ring-fg" pathLength="100"/></svg>
+          <div><b class="ring-n">48/48</b><span>Updated overnight, not during clinic hours</span></div></div></div><div class="face"><div class="hc-head"><span>MFA coverage</span><span class="ok">Enforced</span></div>
+          <div class="ring-row"><svg class="ring ring-ok" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="26" class="ring-bg"/><circle cx="32" cy="32" r="26" class="ring-fg" pathLength="100"/></svg>
+          <div><b class="ring-n">100%</b><span>Every account, the owner's too</span></div></div></div><div class="face"><div class="hc-head"><span>Licence review</span><span class="bad">Saved</span></div>
+          <div class="ring-row"><svg class="ring ring-coral" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="26" class="ring-bg"/><circle cx="32" cy="32" r="26" class="ring-fg" pathLength="100"/></svg>
+          <div><b class="ring-n">$4,320</b><span>A year in idle seats cancelled</span></div></div></div></div></div>
 
       <div class="layer" style="--z:2"><div class="hcard hc-dlp">
-        <div class="hc-head"><span>Data loss prevention</span><span class="live"><i></i>Live</span></div>
-        <ul class="dlp-feed" aria-live="off">
-          <li>Patient chart held from personal Gmail</li>
-          <li>Client SSN kept inside the firm</li>
-          <li>Card number stopped in a Teams chat</li>
-        </ul>
+        <div class="hc-head"><span>Security feed</span><span class="live"><i></i>Live</span></div>
+        <ul class="dlp-feed" aria-live="off"><li class="blk"><span><small class="tag">DLP</small>Patient chart held from personal Gmail</span></li><li class="blk"><span><small class="tag">Phishing</small>Fake invoice quarantined before the inbox</span></li><li class="fix"><span><small class="tag">Device</small>Lost laptop wiped remotely</span></li><li class="fix"><span><small class="tag">Access</small>Leaver locked out at 5:01 pm</span></li><li class="blk"><span><small class="tag">Email</small>Spoofed mail from your domain rejected</span></li><li class="fix"><span><small class="tag">Backup</small>Ransomware-hit folder restored in 4 min</span></li><li class="blk"><span><small class="tag">DLP</small>Card number stopped in a Teams chat</span></li></ul>
       </div></div>
 
-      <div class="layer" style="--z:.8"><div class="hcard hc-sign">
-        <div class="hc-head"><span>Sign-ins today</span><span>3</span></div>
-        <ul class="sign-list">
-          <li><span>Front desk</span><em class="ok">MFA</em></li>
-          <li><span>Partner laptop</span><em class="ok">Managed</em></li>
-          <li><span>Unknown country</span><em class="bad">Blocked</em></li>
-        </ul>
-      </div></div>
+      <div class="layer" style="--z:.8"><div class="hcard hc-sign" data-cycle><div class="face is-on"><div class="hc-head"><span>Sign-ins today</span><span>3</span></div>
+          <ul class="sign-list"><li><span>Front desk</span><em class="ok">MFA</em></li><li><span>Partner laptop</span><em class="ok">Managed</em></li><li><span>Unknown country</span><em class="bad">Blocked</em></li></ul></div><div class="face"><div class="hc-head"><span>Devices</span><span>24</span></div>
+          <ul class="sign-list"><li><span>Reception PC</span><em class="ok">Encrypted</em></li><li><span>Exam room iPad</span><em class="ok">Managed</em></li><li><span>Old file server</span><em class="ok">Retired</em></li></ul></div><div class="face"><div class="hc-head"><span>Expiring soon</span><span>3</span></div>
+          <ul class="sign-list"><li><span>Website certificate</span><em class="ok">Renewed</em></li><li><span>Domain name</span><em class="ok">Auto-renew</em></li><li><span>Firewall licence</span><em class="bad">30 days</em></li></ul></div><div class="face"><div class="hc-head"><span>People changes</span><span>3</span></div>
+          <ul class="sign-list"><li><span>New hire, Monday</span><em class="ok">Ready</em></li><li><span>Leaver, today</span><em class="ok">Removed</em></li><li><span>Shared inbox</span><em class="ok">Owner set</em></li></ul></div></div></div>
 
-      <div class="layer" style="--z:2.4"><div class="pill hc-patch"><i></i>Patches up to date</div></div>
+      <div class="layer" style="--z:2.4"><div class="pill-stack" data-cycle><div class="face is-on"><span class="pill"><i></i>Patches up to date</span></div><div class="face"><span class="pill"><i></i>Certificate valid, 364 days</span></div><div class="face"><span class="pill"><i></i>Backups offsite</span></div><div class="face"><span class="pill"><i></i>Spam filter tuned</span></div></div></div>
     </div>
   </div>
 </section>

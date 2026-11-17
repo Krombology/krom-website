@@ -137,6 +137,53 @@ def calc_row(selected="m365-standard", seats=50, price=14):
           </div>"""
 
 
+# Hero status cards. Each card cycles through these faces.
+METRICS = [  # (label, status, status class, big number, caption, ring colour)
+    ("Nightly backup", "Verified", "ok", "100%", "Restore tested this week", "ok"),
+    ("Laptops patched", "Done", "ok", "48/48", "Updated overnight, not during clinic hours", "ok"),
+    ("MFA coverage", "Enforced", "ok", "100%", "Every account, the owner's too", "ok"),
+    ("Licence review", "Saved", "bad", "$4,320", "A year in idle seats cancelled", "coral"),
+]
+FEED = [  # (tag, message, blocked?)
+    ("DLP", "Patient chart held from personal Gmail", True),
+    ("Phishing", "Fake invoice quarantined before the inbox", True),
+    ("Device", "Lost laptop wiped remotely", False),
+    ("Access", "Leaver locked out at 5:01 pm", False),
+    ("Email", "Spoofed mail from your domain rejected", True),
+    ("Backup", "Ransomware-hit folder restored in 4 min", False),
+    ("DLP", "Card number stopped in a Teams chat", True),
+]
+LISTS = [  # (title, count, rows of (item, status, ok?))
+    ("Sign-ins today", "3", [("Front desk", "MFA", True), ("Partner laptop", "Managed", True), ("Unknown country", "Blocked", False)]),
+    ("Devices", "24", [("Reception PC", "Encrypted", True), ("Exam room iPad", "Managed", True), ("Old file server", "Retired", True)]),
+    ("Expiring soon", "3", [("Website certificate", "Renewed", True), ("Domain name", "Auto-renew", True), ("Firewall licence", "30 days", False)]),
+    ("People changes", "3", [("New hire, Monday", "Ready", True), ("Leaver, today", "Removed", True), ("Shared inbox", "Owner set", True)]),
+]
+PILLS = ["Patches up to date", "Certificate valid, 364 days", "Backups offsite", "Spam filter tuned"]
+
+
+def stage_cards():
+    def faces(items):
+        return "".join(f'<div class="face{" is-on" if i == 0 else ""}">{x}</div>' for i, x in enumerate(items))
+    m = faces(f"""<div class="hc-head"><span>{a}</span><span class="{c}">{b}</span></div>
+          <div class="ring-row"><svg class="ring ring-{col}" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="26" class="ring-bg"/><circle cx="32" cy="32" r="26" class="ring-fg" pathLength="100"/></svg>
+          <div><b class="ring-n">{n}</b><span>{cap}</span></div></div>""" for a, b, c, n, cap, col in METRICS)
+    f = "".join(f'<li class="{"blk" if b else "fix"}"><span><small class="tag">{t}</small>{msg}</span></li>' for t, msg, b in FEED)
+    l = faces(f"""<div class="hc-head"><span>{t}</span><span>{n}</span></div>
+          <ul class="sign-list">{"".join(f'<li><span>{a}</span><em class="{"ok" if ok else "bad"}">{b}</em></li>' for a, b, ok in rows)}</ul>""" for t, n, rows in LISTS)
+    p = faces(f'<span class="pill"><i></i>{x}</span>' for x in PILLS)
+    return f"""      <div class="layer" style="--z:1.2"><div class="hcard hc-backup" data-cycle>{m}</div></div>
+
+      <div class="layer" style="--z:2"><div class="hcard hc-dlp">
+        <div class="hc-head"><span>Security feed</span><span class="live"><i></i>Live</span></div>
+        <ul class="dlp-feed" aria-live="off">{f}</ul>
+      </div></div>
+
+      <div class="layer" style="--z:.8"><div class="hcard hc-sign" data-cycle>{l}</div></div>
+
+      <div class="layer" style="--z:2.4"><div class="pill-stack" data-cycle>{p}</div></div>"""
+
+
 def motif(slug, cls="motif"):
     return (f'<svg class="{cls}" viewBox="0 0 120 60" aria-hidden="true">'
             f'<path d="{MOTIF[slug]}" pathLength="1"/></svg>')
@@ -255,33 +302,7 @@ def index():
         <path d="M260 90 C 330 60, 380 70, 450 70"/>
         <path d="M120 150 C 60 260, 80 330, 150 380"/>
       </svg>
-      <div class="layer" style="--z:1.2"><div class="hcard hc-backup">
-        <div class="hc-head"><span>Nightly backup</span><span class="ok">Verified</span></div>
-        <div class="ring-row">
-          <svg class="ring" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="26" class="ring-bg"/><circle cx="32" cy="32" r="26" class="ring-fg" pathLength="100"/></svg>
-          <div><b class="ring-n" data-count="100" data-suffix="%">100%</b><span>Restore tested this week</span></div>
-        </div>
-      </div></div>
-
-      <div class="layer" style="--z:2"><div class="hcard hc-dlp">
-        <div class="hc-head"><span>Data loss prevention</span><span class="live"><i></i>Live</span></div>
-        <ul class="dlp-feed" aria-live="off">
-          <li>Patient chart held from personal Gmail</li>
-          <li>Client SSN kept inside the firm</li>
-          <li>Card number stopped in a Teams chat</li>
-        </ul>
-      </div></div>
-
-      <div class="layer" style="--z:.8"><div class="hcard hc-sign">
-        <div class="hc-head"><span>Sign-ins today</span><span>3</span></div>
-        <ul class="sign-list">
-          <li><span>Front desk</span><em class="ok">MFA</em></li>
-          <li><span>Partner laptop</span><em class="ok">Managed</em></li>
-          <li><span>Unknown country</span><em class="bad">Blocked</em></li>
-        </ul>
-      </div></div>
-
-      <div class="layer" style="--z:2.4"><div class="pill hc-patch"><i></i>Patches up to date</div></div>
+{stage_cards()}
     </div>
   </div>
 </section>

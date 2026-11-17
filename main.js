@@ -51,7 +51,20 @@
     }, { passive: true });
   }
 
-  /* DLP feed cycles */
+  /* Hero cards: each [data-cycle] card steps through its faces, staggered */
+  $$('[data-cycle]').forEach(function (card, ci) {
+    var faces = Array.prototype.slice.call(card.querySelectorAll('.face')), i = 0;
+    if (reduce || faces.length < 2) return;
+    setTimeout(function () {
+      setInterval(function () {
+        faces[i].classList.remove('is-on');
+        i = (i + 1) % faces.length;
+        faces[i].classList.add('is-on');
+      }, 5200);
+    }, 2600 + ci * 1700);
+  });
+
+  /* Security feed cycles */
   var feed = $$('.dlp-feed li');
   if (feed.length) {
     var fi = 0;
@@ -62,7 +75,7 @@
       setTimeout(function () { cur.classList.remove('is-off'); }, 600);
       fi = (fi + 1) % feed.length;
       feed[fi].classList.add('is-on');
-    }, 2800);
+    }, 2600);
   }
 
   /* Headline rotator */
