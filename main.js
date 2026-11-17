@@ -35,6 +35,7 @@
     requestAnimationFrame(function tick(ts) {
       t0 = t0 || ts;
       var p = Math.max(0, Math.min((ts - t0) / 1400, 1));
+      if (!p) { requestAnimationFrame(tick); return; }
       el.textContent = pre + Math.round(target * (1 - Math.pow(1 - p, 4))).toLocaleString('en-US') + suf;
       if (p < 1) requestAnimationFrame(tick);
     });
