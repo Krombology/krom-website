@@ -132,7 +132,7 @@ def calc_row(selected="m365-standard", seats=50, price=14):
     return f"""<div class="calc-row">
             <label class="cr-plan"><span>Licence</span><select name="plan">{plan_options(selected)}</select></label>
             <label class="cr-seats"><span>Seats</span><input type="number" name="seats" inputmode="numeric" min="1" max="100000" step="1" value="{seats}"></label>
-            <label class="cr-price"><span>$ per seat / mo</span><input type="number" name="price" inputmode="decimal" min="0" max="1000" step="0.01" value="{price}"></label>
+            <label class="cr-price"><span>$ / seat / mo</span><input type="number" name="price" inputmode="decimal" min="0" max="1000" step="0.01" value="{price}"></label>
             <button type="button" class="cr-del" aria-label="Remove this licence"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
           </div>"""
 
