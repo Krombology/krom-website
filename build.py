@@ -8,7 +8,7 @@ from html import escape
 from pathlib import Path
 
 ROOT = Path(__file__).parent
-CAL = "https://calendly.com/krom-systems/30min"
+CAL = "https://calendly.com/dane-krom/30min"
 MAIL = '<a class="js-mail" data-u="dane" data-d="krom.systems" href="#contact">dane [at] krom.systems</a>'
 
 # Line-art motifs, drawn with pathLength=1 so CSS can animate the stroke.
