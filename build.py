@@ -216,6 +216,7 @@ def head(title, desc, depth=""):
       <span class="brand-name">Krom<span class="brand-sub">Technology Systems</span></span>
     </a>
     <nav class="nav-links" aria-label="Main">
+      <a href="index.html#services">Services</a>
       <a href="index.html#industries">Industries</a>
       <a href="index.html#coverage">Coverage</a>
       <a href="index.html#savings">Savings</a>
@@ -272,6 +273,21 @@ def pillars():
 
 def options():
     return "".join(f'<option value="{s["slug"]}">{s["name"]}</option>' for s in SECTORS)
+
+
+SERVICES = [
+    ("Help desk", ["Password resets and MFA lockouts", "New hire laptops, ready on day one", "Mac, Windows, iPhone, printers, Wi&#8209;Fi", "Remote, or on site across NY and NJ"]),
+    ("Break / fix", ["Email down, files not syncing", "Failed updates and dying drives", "VPN and network outages", "Restores when something gets deleted"]),
+    ("Servers & infrastructure", ["Windows Server upgrades, 2008 to 2022", "Active Directory, file shares, DFS", "VMware, Hyper-V and Azure", "Networks, VLANs, DNS, DHCP, firewalls"]),
+    ("Migrations & cloud", ["Exchange or Google to Microsoft 365", "Microsoft to Google, Dropbox to either", "Single sign-on and Conditional Access", "Jamf and Intune for every device"]),
+]
+
+def svc_cols():
+    out = []
+    for i, (t, items) in enumerate(SERVICES, 1):
+        lis = "".join(f"<li>{x}</li>" for x in items)
+        out.append(f'      <div class="svc-col" data-reveal><span class="svc-n">0{i}</span><h3>{t}</h3><ul>{lis}</ul></div>')
+    return "\n".join(out)
 
 
 def index():
@@ -349,6 +365,24 @@ def index():
     </div>
     <div class="bento">
 {tiles()}
+    </div>
+  </div>
+</section>
+
+<section class="section" id="services">
+  <div class="wrap">
+    <div class="section-head split" data-reveal>
+      <h2>Strategy, sure.<br><span class="accent">Also the printer.</span></h2>
+      <p>Help desk, break/fix, server upgrades and full infrastructure projects. The person who plans it is the person who fixes it at 8am.</p>
+    </div>
+    <div class="svc">
+{svc_cols()}
+    </div>
+    <div class="ladder" data-reveal>
+      <span class="small-h">How I got here</span>
+      <ol>
+        <li>Retail tech support</li><li>MSP technician</li><li>MSP systems engineer</li><li>Network engineer, 100+ offices</li><li>Cloud engineer, HiTrust healthcare</li><li class="now">Krom</li>
+      </ol>
     </div>
   </div>
 </section>
