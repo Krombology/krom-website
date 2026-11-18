@@ -210,7 +210,6 @@
       var last = 0;
       try { last = +localStorage.getItem('krom-sent') || 0; } catch (err) {}
       if (Date.now() - last < 60000) { say('Already sent. Give it a minute before sending another.', 'is-err'); return; }
-      if (form.action.indexOf('YOUR_FORM_ID') !== -1) { say('The form is not connected yet. Email ' + mail + ' instead.', 'is-err'); return; }
       var btn = form.querySelector('button[type="submit"]');
       btn.disabled = true; say('Sending');
       fetch(form.action, { method: 'POST', headers: { Accept: 'application/json' }, body: data })
