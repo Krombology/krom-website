@@ -2,5 +2,6 @@
 *.png
 !assets/*.png
 _*.html
+_*.txt
 docs/
 .impeccable.md
