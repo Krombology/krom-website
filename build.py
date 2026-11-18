@@ -375,14 +375,23 @@ def index():
       <h2>Strategy, sure.<br><span class="accent">Also the printer.</span></h2>
       <p>Help desk, break/fix, server upgrades and full infrastructure projects. The person who plans it is the person who fixes it at 8am.</p>
     </div>
-    <div class="svc">
+    <div class="svc-grid">
+      <aside class="now-card" data-reveal>
+        <span class="now-tag"><i aria-hidden="true"></i>Right now</span>
+        <h3>Senior Infrastructure Engineer</h3>
+        <p>At a Fortune 500 company, running enterprise migrations and acquisitions day in, day out. Krom clients get the same playbook, sized to fit.</p>
+        <dl class="now-stats">
+          <div><dt>17,500</dt><dd>accounts in one migration</dd></div>
+          <div><dt>7</dt><dd>acquisitions assessed in five months</dd></div>
+        </dl>
+        <span class="now-label">How I got here</span>
+        <ol class="path">
+          <li>Retail tech support</li><li>MSP technician</li><li>MSP systems engineer</li><li>Network engineer, 100+ offices</li><li>Cloud engineer, HiTrust healthcare</li><li class="here">Senior infrastructure engineer, enterprise migrations</li>
+        </ol>
+      </aside>
+      <div class="svc">
 {svc_cols()}
-    </div>
-    <div class="ladder" data-reveal>
-      <span class="small-h">How I got here</span>
-      <ol>
-        <li>Retail tech support</li><li>MSP technician</li><li>MSP systems engineer</li><li>Network engineer, 100+ offices</li><li>Cloud engineer, HiTrust healthcare</li><li class="now">Krom</li>
-      </ol>
+      </div>
     </div>
   </div>
 </section>
