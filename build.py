@@ -276,10 +276,10 @@ def options():
 
 
 SERVICES = [
-    ("Help desk", ["Password resets and MFA lockouts", "New hire laptops, ready on day one", "Mac, Windows, iPhone, printers, Wi&#8209;Fi", "Remote, or on site across NY and NJ"]),
-    ("Break / fix", ["Email down, files not syncing", "Failed updates and dying drives", "VPN and network outages", "Restores when something gets deleted"]),
-    ("Servers & infrastructure", ["Windows Server upgrades, 2008 to 2022", "Active Directory, file shares, DFS", "VMware, Hyper-V and Azure", "Networks, VLANs, DNS, DHCP, firewalls"]),
-    ("Migrations & cloud", ["Exchange or Google to Microsoft 365", "Microsoft to Google, Dropbox to either", "Single sign-on and Conditional Access", "Jamf and Intune for every device"]),
+    ("Modernization", ["Servers and file shares moved to the cloud", "Windows Server and Active Directory upgrades", "Networks rebuilt, VLANs, DNS, VPN, firewalls", "A roadmap with costs before anything moves"]),
+    ("Cloud infrastructure", ["Microsoft 365, Entra ID and Exchange admin", "Azure virtual machines, networks and policy", "AWS EC2 instances and S3 buckets", "Single sign-on and Conditional Access"]),
+    ("Migrations", ["Google or Exchange to Microsoft 365", "Microsoft to Google, Dropbox to either", "Mergers and acquisitions, ready on day one", "Jamf and Intune so every device follows"]),
+    ("Automation", ["Power Automate for approvals and onboarding", "Python and PowerShell for the bulk work", "Reports that build themselves", "If you do it every week, it can run itself"]),
 ]
 
 def svc_cols():
@@ -287,6 +287,7 @@ def svc_cols():
     for i, (t, items) in enumerate(SERVICES, 1):
         lis = "".join(f"<li>{x}</li>" for x in items)
         out.append(f'      <div class="svc-col" data-reveal><span class="svc-n">0{i}</span><h3>{t}</h3><ul>{lis}</ul></div>')
+    out.append('      <div class="svc-col svc-wide" data-reveal><span class="svc-n">05</span><h3>Handoff</h3><p>Every project ends with runbooks, diagrams and admin notes, so your help desk handles the day to day without calling me.</p></div>')
     return "\n".join(out)
 
 
@@ -372,8 +373,8 @@ def index():
 <section class="section" id="services">
   <div class="wrap">
     <div class="section-head split" data-reveal>
-      <h2>Strategy, sure.<br><span class="accent">Also the printer.</span></h2>
-      <p>Help desk, break/fix, server upgrades and full infrastructure projects. The person who plans it is the person who fixes it at 8am.</p>
+      <h2>Projects, not tickets.<br><span class="accent">Built to run without me.</span></h2>
+      <p>I modernize infrastructure, move you to the cloud, and automate the work your team repeats every week. Then I hand your help desk the docs to run it.</p>
     </div>
     <div class="svc-grid">
       <aside class="now-card" data-reveal>
